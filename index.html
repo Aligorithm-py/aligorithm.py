@@ -1,35 +1,81 @@
-# aligorithm.py.github.io
 <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AliGorithm | Portfolyo</title>
+    <title>AliGorithm.py | Portfolyo</title>
+    <!-- Sosyal medya ikonları için FontAwesome ekliyoruz -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { background-color: #0d1117; color: #39d353; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; overflow: hidden; }
-        .terminal { background: #161b22; border: 1px solid #30363d; padding: 30px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); max-width: 500px; width: 90%; }
-        .header { color: #8b949e; margin-bottom: 15px; font-size: 0.8rem; }
-        h1 { margin: 0; font-size: 1.8rem; letter-spacing: 1px; }
-        .cmd { color: #58a6ff; }
-        .cursor { display: inline-block; width: 10px; height: 18px; background: #39d353; margin-left: 5px; animation: blink 1s infinite; }
-        @keyframes blink { 50% { opacity: 0; } }
-        .links { margin-top: 25px; display: flex; gap: 15px; }
-        a { color: #ffffff; text-decoration: none; border: 1px solid #30363d; padding: 5px 12px; border-radius: 5px; font-size: 0.9rem; transition: 0.3s; }
-        a:hover { background: #39d353; color: #0d1117; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; color: #333; }
+        .container { max-width: 1000px; width: 90%; background: white; margin-top: 50px; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; position: relative; }
+        
+        /* Profil Fotoğrafı */
+        .profile-img { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 5px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.2); margin-bottom: 20px; }
+        
+        h1 { font-size: 2.5rem; margin: 10px 0; color: #000; }
+        .subtitle { font-size: 1.2rem; color: #666; margin-bottom: 30px; }
+
+        /* Sosyal Medya Kartları */
+        .social-container { display: flex; justify-content: space-between; align-items: center; margin: 40px 0; gap: 20px; }
+        .social-card { flex: 1; padding: 20px; border: 1px solid #eee; border-radius: 15px; transition: 0.3s; text-decoration: none; color: inherit; }
+        .social-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .social-card i { font-size: 3rem; margin-bottom: 10px; }
+        .fa-instagram { color: #E1306C; }
+        .fa-linkedin { color: #0077b5; }
+        .social-card h3 { margin: 10px 0 5px; }
+        .social-card p { font-size: 0.8rem; color: #888; }
+
+        /* Yetenekler */
+        .skills-section { margin-top: 40px; border-top: 1px solid #eee; padding-top: 30px; }
+        .skills-section h2 { font-size: 1.5rem; margin-bottom: 20px; }
+        .skills-list { font-size: 1.1rem; font-weight: 500; color: #444; }
+
+        /* Footer */
+        footer { margin-top: auto; padding: 20px; font-size: 0.8rem; color: #999; }
+        
+        @media (max-width: 768px) {
+            .social-container { flex-direction: column; }
+            .social-card { width: 100%; }
+        }
     </style>
 </head>
 <body>
-    <div class="terminal">
-        <div class="header">C:\Users\AliGorithm> python main.py</div>
-        <h1>AliGorithm.py <span class="cursor"></span></h1>
-        <p><span class="cmd">>>></span> status: "Building for TÜBİTAK 2026"</p>
-        <p><span class="cmd">>>></span> location: "Nişantaşı University"</p>
-        <p><span class="cmd">>>></span> focus: ["Fitness AI", "Python", "Flutter"]</p>
+
+    <div class="container">
+        <!-- Fotoğrafın adı resimali.jpg olduğu için src kısmına aynısını yazdık -->
+        <img src="resimali.jpg" alt="Ali Kaya" class="profile-img">
         
-        <div class="links">
-            <a href="https://instagram.com/aligorithm.py" target="_blank">Instagram</a>
-            <a href="mailto:iletisim-mailin@gmail.com">E-posta</a>
+        <h1>AliGorithm.py</h1>
+        <p class="subtitle">Yazılım Geliştirme Öğrencisi | Nişantaşı Üniversitesi | İstanbul, TR</p>
+
+        <div class="social-container">
+            <!-- Instagram Kartı -->
+            <a href="https://www.instagram.com/aligorithm.py/?hl=tr" target="_blank" class="social-card">
+                <i class="fab fa-instagram"></i>
+                <h3>Instagram</h3>
+                <p>@aligorithm.py</p>
+                <p>Profil için tıklayın</p>
+            </a>
+
+            <!-- LinkedIn Kartı -->
+            <a href="https://www.linkedin.com/in/ali-kaya-754a39393/" target="_blank" class="social-card">
+                <i class="fab fa-linkedin"></i>
+                <h3>LinkedIn</h3>
+                <p>Ali Kaya</p>
+                <p>Profil için tıklayın</p>
+            </a>
+        </div>
+
+        <div class="skills-section">
+            <h2>Yetenekler</h2>
+            <p class="skills-list">Python, Flutter, API Geliştirme</p>
         </div>
     </div>
+
+    <footer>
+        Telif Hakkı © Ali Kaya - AliGorithm.py | İletişim: aligorithm.py@gmail.com
+    </footer>
+
 </body>
 </html>
