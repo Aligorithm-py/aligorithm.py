@@ -7,46 +7,123 @@
     <!-- Sosyal medya ikonları için FontAwesome ekliyoruz -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; color: #333; }
-        .container { max-width: 1000px; width: 90%; background: white; margin-top: 50px; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; position: relative; }
+        /* -- Genel Renkler (Aydınlık Mod) -- */
+        :root {
+            --bg-color: #f4f7f6;
+            --container-bg: white;
+            --text-color: #333;
+            --subtitle-color: #666;
+            --card-border: #eee;
+            --card-hover-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            --header-color: #000;
+            --banner-overlay: rgba(0, 0, 0, 0.5);
+            --banner-text: #fff;
+        }
+
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); margin: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; color: var(--text-color); transition: background 0.3s, color 0.3s; }
+        
+        /* -- Header Sağ Üst -- */
+        .header-top { position: absolute; top: 20px; right: 20px; text-align: right; z-index: 100; display: flex; flex-direction: column; gap: 10px;}
+        
+        /* İletişim Butonu */
+        .contact-btn { padding: 8px 15px; background-color: #007bff; color: white; border-radius: 20px; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: background 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .contact-btn:hover { background-color: #0056b3; }
+
+        /* Mod Değiştirici */
+        .mode-toggle { background: none; border: 2px solid var(--text-color); color: var(--text-color); padding: 5px 10px; border-radius: 15px; cursor: pointer; font-size: 0.8rem; transition: all 0.3s; }
+        .mode-toggle:hover { background: var(--text-color); color: var(--bg-color); }
+
+        /* -- Banner -- */
+        .banner-container { width: 100%; height: 300px; overflow: hidden; position: relative; display: flex; justify-content: center; align-items: center; }
+        .banner-img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+        .banner-overlay-text { position: absolute; color: var(--banner-text); text-align: center; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .banner-overlay-text h1 { font-size: 3rem; margin: 0; }
+        .banner-overlay-text p { font-size: 1.5rem; margin: 5px 0 0; }
+
+        /* -- Ana İçerik -- */
+        .container { max-width: 1000px; width: 90%; background: var(--container-bg); margin-top: -50px; /* Bannerın üzerine binmesi için */ padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; position: relative; transition: background 0.3s, box-shadow 0.3s; }
         
         /* Profil Fotoğrafı */
-        .profile-img { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 5px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.2); margin-bottom: 20px; }
+        .profile-img { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 5px solid var(--container-bg); box-shadow: 0 5px 15px rgba(0,0,0,0.2); margin-bottom: 20px; transition: border-color 0.3s; }
         
-        h1 { font-size: 2.5rem; margin: 10px 0; color: #000; }
-        .subtitle { font-size: 1.2rem; color: #666; margin-bottom: 30px; }
+        h1 { font-size: 2.5rem; margin: 10px 0; color: var(--header-color); transition: color 0.3s; }
+        .subtitle { font-size: 1.2rem; color: var(--subtitle-color); margin-bottom: 30px; transition: color 0.3s; }
 
-        /* Sosyal Medya Kartları */
-        .social-container { display: flex; justify-content: space-between; align-items: center; margin: 40px 0; gap: 20px; }
-        .social-card { flex: 1; padding: 20px; border: 1px solid #eee; border-radius: 15px; transition: 0.3s; text-decoration: none; color: inherit; }
-        .social-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .social-card i { font-size: 3rem; margin-bottom: 10px; }
+        /* -- Sosyal Medya Kartları -- */
+        .social-container { display: flex; justify-content: center; align-items: stretch; margin: 40px 0; gap: 20px; flex-wrap: wrap; }
+        .social-card { flex: 1; min-width: 200px; padding: 25px; border: 1px solid var(--card-border); border-radius: 15px; transition: 0.3s; text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: background 0.3s, border-color 0.3s; }
+        .social-card:hover { transform: translateY(-5px); box-shadow: var(--card-hover-shadow); background-color: rgba(0,0,0,0.02); }
+        .social-card i { font-size: 3rem; margin-bottom: 15px; transition: color 0.3s; }
+        
+        /* İkon Renkleri */
         .fa-instagram { color: #E1306C; }
         .fa-linkedin { color: #0077b5; }
-        .social-card h3 { margin: 10px 0 5px; }
-        .social-card p { font-size: 0.8rem; color: #888; }
+        .fa-github { color: #333; } /* Varsayılan GitHub rengi */
 
-        /* Yetenekler */
-        .skills-section { margin-top: 40px; border-top: 1px solid #eee; padding-top: 30px; }
-        .skills-section h2 { font-size: 1.5rem; margin-bottom: 20px; }
-        .skills-list { font-size: 1.1rem; font-weight: 500; color: #444; }
+        .social-card h3 { margin: 10px 0 5px; color: var(--header-color); transition: color 0.3s; }
+        .social-card p { font-size: 0.9rem; color: var(--subtitle-color); margin: 0; transition: color 0.3s; }
 
-        /* Footer */
+        /* -- Yetenekler -- */
+        .skills-section { margin-top: 40px; border-top: 1px solid var(--card-border); padding-top: 30px; transition: border-color 0.3s; }
+        .skills-section h2 { font-size: 1.5rem; margin-bottom: 20px; color: var(--header-color); transition: color 0.3s; }
+        .skills-list { font-size: 1.1rem; font-weight: 500; color: var(--text-color); transition: color 0.3s; }
+
+        /* -- Footer -- */
         footer { margin-top: auto; padding: 20px; font-size: 0.8rem; color: #999; }
-        
+
+        /* -- Responsive Düzen -- */
         @media (max-width: 768px) {
             .social-container { flex-direction: column; }
             .social-card { width: 100%; }
+            .banner-container { height: 200px; }
+            .banner-overlay-text h1 { font-size: 2rem; }
+            .banner-overlay-text p { font-size: 1rem; }
+            .container { margin-top: -30px; }
         }
+
+        /* -- Karanlık Mod Stilleri -- */
+        body.dark-mode {
+            --bg-color: #121212;
+            --container-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --subtitle-color: #aaa;
+            --card-border: #333;
+            --card-hover-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            --header-color: #fff;
+            --banner-text: #fff;
+        }
+        body.dark-mode .profile-img { border-color: var(--container-bg); }
+        body.dark-mode .social-card:hover { background-color: rgba(255,255,255,0.05); }
+        body.dark-mode .fa-github { color: #fff; } /* Karanlık modda GitHub ikonu beyaz */
+
     </style>
 </head>
 <body>
+
+    <!-- Header Sağ Üst (İletişim ve Mod) -->
+    <div class="header-top">
+        <a href="mailto:aliikaya0@outlook.com" class="contact-btn">
+            aliikaya0@outlook.com
+        </a>
+        <button class="mode-toggle" onclick="toggleMode()" id="mode-btn">
+            Karanlık Mod
+        </button>
+    </div>
+
+    <!-- Tam Boy Banner -->
+    <div class="banner-container">
+        <img src="WhatsApp Image 2026-07-06 at 01.27.39.jpeg" alt="AliGorithm Banner" class="banner-img">
+        <div class="banner-overlay-text">
+            <h1>AliGorithm.py</h1>
+            <p>Yazılım Geliştirme Portfolyosu</p>
+        </div>
+    </div>
 
     <div class="container">
         <!-- Fotoğrafın adı resimali.jpg olduğu için src kısmına aynısını yazdık -->
         <img src="resimali.jpg" alt="Ali Kaya" class="profile-img">
         
-        <h1>AliGorithm.py</h1>
+        <h1>Ali Kaya</h1>
         <p class="subtitle">Yazılım Geliştirme Öğrencisi | Nişantaşı Üniversitesi | İstanbul, TR</p>
 
         <div class="social-container">
@@ -65,17 +142,74 @@
                 <p>Ali Kaya</p>
                 <p>Profil için tıklayın</p>
             </a>
+
+            <!-- GitHub Kartı (YENİ) -->
+            <a href="https://github.com/aligorithm-py" target="_blank" class="social-card">
+                <i class="fab fa-github"></i>
+                <h3>GitHub</h3>
+                <p>aligorithm-py</p>
+                <p>Projelere göz at</p>
+            </a>
         </div>
 
         <div class="skills-section">
             <h2>Yetenekler</h2>
-            <p class="skills-list">Python, Flutter, API Geliştirme</p>
+            <p class="skills-list">Python, Flutter, API Geliştirme, Veri Yapıları</p>
         </div>
     </div>
 
     <footer>
         Telif Hakkı © Ali Kaya - AliGorithm.py | İletişim: aligorithm.py@gmail.com
     </footer>
+
+    <script>
+        function toggleMode() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+            const btn = document.getElementById('mode-btn');
+            if (body.classList.contains('dark-mode')) {
+                btn.innerText = 'Aydınlık Mod';
+            } else {
+                btn.innerText = 'Karanlık Mod';
+            }
+            // Tercihi localStorage'a kaydet
+            const currentMode = body.classList.contains('dark-mode') ? 'dark' : 'light';
+            localStorage.setItem('theme', currentMode);
+        }
+
+        // Sayfa yüklendiğinde tercihi uygula
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            toggleMode(); // Bu fonksiyonu çağırarak modu tersine çeviriyoruz (başlangıç light olduğu için)
+            // Veya daha iyisi:
+            // document.body.classList.add('dark-mode');
+            // document.getElementById('mode-btn').innerText = 'Aydınlık Mod';
+            // Ancak toggle fonksiyonunu iki kez çağırmamak için basit bir kontrol ekleyelim:
+        }
+    </script>
+    <!-- Düzeltilmiş Script (Daha Temiz) -->
+    <script>
+        // Başlangıçta localStorage kontrolü
+        const savedMode = localStorage.getItem('theme');
+        if (savedMode === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('mode-btn').innerText = 'Aydınlık Mod';
+        }
+
+        function toggleMode() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+            const btn = document.getElementById('mode-btn');
+            
+            if (body.classList.contains('dark-mode')) {
+                btn.innerText = 'Aydınlık Mod';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                btn.innerText = 'Karanlık Mod';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+    </script>
 
 </body>
 </html>
